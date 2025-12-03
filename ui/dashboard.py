@@ -21,9 +21,7 @@ def open_dashboard(username, role):
     tk.Label(window, text=f"Role: {role}").pack()
     tk.Label(window, text=f"Created: {created_at}").pack()
 
-    # -------------------------
-    # فقط برای ادمین
-    # -------------------------
+
     if role == "admin":
         tk.Button(
             window,
@@ -33,9 +31,7 @@ def open_dashboard(username, role):
             command=lambda: open_admin_panel(window)
         ).pack(pady=10)
 
-    # -------------------------
-    # بخش نوت‌ها
-    # -------------------------
+
     notes_frame = tk.Frame(window)
     notes_frame.pack(pady=20)
 
@@ -62,9 +58,7 @@ def open_dashboard(username, role):
     window.mainloop()
 
 
-# ------------------------------------------------------------
-# پنل مدیریت ادمین
-# ------------------------------------------------------------
+
 def open_admin_panel(parent):
     admin = tk.Toplevel(parent)
     admin.title("Admin Panel")
@@ -82,12 +76,10 @@ def open_admin_panel(parent):
 
     load_users()
 
-    # فیلد ID برای عملیات
     tk.Label(admin, text="User ID:").pack(pady=5)
     user_id_entry = tk.Entry(admin)
     user_id_entry.pack()
 
-    # حذف کاربر
     def remove_user():
         uid = user_id_entry.get().strip()
         if uid.isdigit():
@@ -96,7 +88,6 @@ def open_admin_panel(parent):
 
     tk.Button(admin, text="Delete User", bg="red", fg="white", command=remove_user).pack(pady=5)
 
-    # تغییر نقش کاربر
     tk.Label(admin, text="New Role (admin/user):").pack()
     new_role_entry = tk.Entry(admin)
     new_role_entry.pack()
